@@ -8,6 +8,10 @@
     --primary-color: #607d8b;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 body {
     padding: 0;
     color: var(--text-color);
@@ -36,14 +40,19 @@ h3 {
     margin-bottom: 1em;
 }
 
+h2 {
+    padding-top: calc(var(--v-space)*0.5);
+}
+
 a {
-	text-decoration: underline;
-	color: var(--primary-color);
+    text-decoration: underline;
+    color: var(--primary-color);
 }
 
 header,
 section {
     margin-bottom: var(--v-space);
+    padding-bottom: var(--v-space);
     float: left;
     width: 100%;
     position: relative;
@@ -60,9 +69,15 @@ ul {
     padding-left: 20px;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+    margin-bottom: var(--v-space);
+}
+
 code {
-	font-family: monospace;
-	font-weight: bold;
+    font-family: monospace;
+    font-weight: bold;
 }
 
 
@@ -75,17 +90,42 @@ body pre.prettyprint {
     position: fixed;
     padding-top: 2rem;
     top: 0;
-    padding-right: 30px;
-    padding-left: 30px;
     right: 0;
-    width: 220px;
+    width: 280px;
     height: 100%;
     background-color: rgba(96, 125, 139, .1);
 }
+.sidebar h1 {
+	padding: 0 30px;
+	position: relative;
+	z-index: 1;
+}
+
+.sidebar-list {
+    padding-right: 30px;
+    padding-left: 30px;
+    position: absolute;
+    padding-top: 110px;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+.sidebar-list:nth-of-type(2) {
+	right: -260px;
+	background-color: #d2dbde;
+	transition: .3s transform ease-in;
+}
+.sidebar-list:nth-of-type(2):hover {
+	/* background-color: #eff2f3; */
+	transform: translateX(-260px);
+}
+
 main {
     padding-right: 370px;
     padding-left: 30px;
 }
+
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -95,26 +135,58 @@ main {
 <body>
 <div class="sidebar">
     <h1>Contents:</h1>
-    <ul>
-        <li><a href="#2">2. Vue instance</a></li>
-        <li><a href="#3">3. Data and methods</a></li>
-        <li><a href="#4">4. Data binding</a></li>
-        <li><a href="#5">5. Events</a></li>
-        <li><a href="#6">6. Events Modifiers</a></li>
-        <li><a href="#7">7. Keyboard Events</a></li>
-        <li><a href="#8">8. Two-Way Data Binding</a></li>
-        <li><a href="#9">9. Computed Properties</a></li>
-        <li><a href="#10">10. Dynamic CSS Classes</a></li>
-        <li><a href="#11">11. Conditionals</a></li>
-        <li><a href="#12">12. Looping with v-for</a></li>
-        <li><a href="#13">13. Simple Punchbag Game</a></li>
-        <li><a href="#14">14. Multiple Vue Instances</a></li>
-        <li><a href="#15">15. Intro to Components</a></li>
-        <li><a href="#16">xxxxxxxxxxxx</a></li>
-        <li><a href="#17">xxxxxxxxxxxx</a></li>
-        <li><a href="#18">xxxxxxxxxxxx</a></li>
-        <li><a href="#19">xxxxxxxxxxxx</a></li>
-    </ul>
+    <div class="sidebar-list">
+	    <ul>
+	        <li><a href="#2">2. Vue instance</a></li>
+	        <li><a href="#3">3. Data and methods</a></li>
+	        <li><a href="#4">4. Data binding</a></li>
+	        <li><a href="#5">5. Events</a></li>
+	        <li><a href="#6">6. Events Modifiers</a></li>
+	        <li><a href="#7">7. Keyboard Events</a></li>
+	        <li><a href="#8">8. Two-Way Data Binding</a></li>
+	        <li><a href="#9">9. Computed Properties</a></li>
+	        <li><a href="#10">10. Dynamic CSS Classes</a></li>
+	        <li><a href="#11">11. Conditionals</a></li>
+	        <li><a href="#12">12. Looping with v-for</a></li>
+	        <li><a href="#13">13. Simple Punchbag Game</a></li>
+	        <li><a href="#14">14. Multiple Vue Instances</a></li>
+	        <li><a href="#15">15. Intro to Components</a></li>
+	        <li><a href="#16">16. Refs</a></li>
+	        <li><a href="#17">17. The Vue CLI</a></li>
+	        <li><a href="#18">18. Vue Files &amp; The Root Component</a></li>
+	        <li><a href="#19">19. Nesting Components</a></li>
+	        <li><a href="#20">20. Component CSS (scoped)</a></li>
+	        <li><a href="#21">21. Nesting Components Examples</a></li>
+	        <li><a href="#22">22. </a></li>
+	    </ul>
+    </div>
+	<div class="sidebar-list">
+	    <ul>
+	    	<li><a href="#23">23. </a></li>
+	        <li><a href="#24">24. </a></li>
+	        <li><a href="#25">25. </a></li>
+	        <li><a href="#26">26. </a></li>
+	        <li><a href="#27">27. </a></li>
+	        <li><a href="#28">28. </a></li>
+	        <li><a href="#29">29. </a></li>
+	        <li><a href="#30">30. </a></li>
+	        <li><a href="#31">31. </a></li>
+	        <li><a href="#32">32. </a></li>
+	        <li><a href="#33">33. </a></li>
+	        <li><a href="#33">33. </a></li>
+	        <li><a href="#34">34. </a></li>
+	        <li><a href="#35">35. </a></li>
+	        <li><a href="#36">36. </a></li>
+	        <li><a href="#37">37. </a></li>
+	        <li><a href="#38">38. </a></li>
+	        <li><a href="#39">39. </a></li>
+	        <li><a href="#40">40. </a></li>
+	        <li><a href="#41">41. </a></li>
+	        <li><a href="#42">42. </a></li>
+	        <li><a href="#43">43. </a></li>
+	        <li><a href="#44">44. </a></li>
+	    </ul>
+    </div>
 </div>
 <main>
     <header>
@@ -482,10 +554,296 @@ new Vue({
         </pre>
     </section>
     <section>
-        <h2 id="xxxxx">xxxxxxxxxxxxx</h2>
+        <h2 id="16">16. Refs</h2>
+        <ul>
+		    <li>We can use refs to reach into the DOM and access information such as text input value's, inner HTML and more</li>
+		    <li>A <code>ref</code> attribute is added to an element to make it accesible</li>
+        </ul>
+        <p>In the example below, when the submit button is hit, it ill run the readRefs function, return the <code>value</code> from the object created by the <code>input</code> ref(erence), and update the <code>output</code>.</p>
+<pre class="prettyprint">
+&lt;div id="vue-app-one"&gt;
+	&lt;input type="text" ref="input" /&gt;
+    &lt;button v-on:click="readRefs"&gt;Submit&lt;/button&gt;
+    &lt;p&gt;{{ output }}&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+<pre class="prettyprint">
+new Vue({
+    el: '#vue-app-one',
+    data: {
+        output: 'Your favourite food'
+    },
+    methods: {
+        readRefs: function(){
+            console.log(this.$refs);
+            this.output = this.$refs.input.value;
+        }
+    }
+});
+</pre>
     </section>
     <section>
-        <h2 id="xxxxx">xxxxxxxxxxxxx</h2>
+        <h2 id="17">17. The Vue CLI</h2>
+        <p>A dev environment workflow that uses webpack.</p>
+        <ul>
+        	<li>Uses ES6 features</li>
+        	<li>Compiles and minifies JS in to 1 files</li>
+        	<li>Uses single file templates</li>
+        	<li>Compiles everything on our machine, not in browser</li>
+        	<li>Hot reloading - dynamically inject HTML without page reload</li>
+        </ul>
+        <p><a href="https://github.com/vuejs/vue-cli">Set-up and installation instructions</a></p>
+    </section>
+    <section>
+        <h2 id="18">18. Vue Files &amp; The Root Component</h2>
+        <p>Inside the <code>new Vue</code> instance in main.js we render the app using <code>render:h => h(App)</code> (ES6 arrow function). This takes the App.vue file, looks for the property/ID assigned to <code>el</code>,  and renders it to our root component, at the very top of out application.</p>
+        <ul>
+        	<li>A Vue file is just an extension of a component</li>
+        	<li>Vue files contain template, script, and style tags</li>
+        	<li>Data still needs to be ran as a function, but in ES6 <code>data function()</code> is the same as <code>data()</code></li>
+        	<li>In the template tags we must have a single element (e.g. div or section) to wrap around all children elements</li>
+        </ul>
+        <p>Below is an example of App.vue:</p>
+<pre class="prettyprint">
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;h1&gt;{{ title }}&lt;/h1&gt;
+        &lt;p&gt;{{ greeting() }}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+    data () {
+        return {
+          title: 'Your first Vue file, wooo!'
+        }
+    },
+    methods: {
+        greeting: function(){
+            return 'heeey cowboy'
+        }
+    }
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+&lt;/style&gt;
+</pre>
+<p>This is what main.js would look like:</p>
+<pre class="prettyprint">
+import Vue from 'vue'
+import App from './App.vue'
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+</pre>
+    </section>
+    <section>
+        <h2 id="19">19. Nesting Components</h2>
+        <p>For a large scale app, our component structure might look something like this:</p>
+        <img style="width: 800px" src="vue-component-tree.jpg" alt="Vue Component Tree">
+        <ul>
+        	<li>Components must be registered globally or locally</li>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+        <p>Globally registered would look like this:</p>
+<pre class="prettyprint">
+import Ninjas from './Ninjas.vue'
+Vue.component('ninjas', Ninjas);
+</pre>
+        <p?>We can then register it in our Vue file by creating a HTML tag matching the component name. So in this case the element would be called <code>&lt;ninjas&gt;&lt;/ninjas&gt;</code>.</p>
+        <p>To nest a component locally, you would import the same way as previously, but also register a component. It would look like this:</p>
+<pre class="prettyprint">
+import Ninjas from './Ninjas.vue';
+export default {
+    components: {
+        'ninjas': Ninjas
+    },
+    data () {
+        return {
+          title: 'Ninja App'
+        }
+    }
+}
+</pre>
+    </section>
+    <section>
+        <h2 id="20">20. Component CSS (scoped)</h2>
+        <p>Components can be styled independently of each other, using scoped styles</p>
+        <ul>
+        	<li>By adding the word <code>scoped</code> to the style tag, the styles wilkl only apply to the current template</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="21">21. Nesting Components Examples</h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="22">22. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="23">23. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="24">24. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="25">25. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="26">26. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="27">27. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="28">28. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="29">29. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="30">30. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="31">31. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="32">32. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="33">33. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+         <h2 id="34">34. </h2>
+         <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="35">35. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="36">36. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="37">37. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="38">38. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="39">39. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="40">40. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="41">41. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="42">42. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="43">43. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
+    </section>
+    <section>
+        <h2 id="44">44. </h2>
+        <p>xxxxxxxxx</p>
+        <ul>
+        	<li>xxxxxxxxxxx</li>
+        </ul>
     </section>
 </main>
 </body>
