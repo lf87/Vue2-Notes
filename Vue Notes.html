@@ -162,7 +162,7 @@ main {
     </div>
 	<div class="sidebar-list">
 	    <ul>
-	    	<li><a href="#23">23. </a></li>
+	    	<li><a href="#23">23. Primitive vs Reference Types</a></li>
 	        <li><a href="#24">24. </a></li>
 	        <li><a href="#25">25. </a></li>
 	        <li><a href="#26">26. </a></li>
@@ -720,10 +720,12 @@ export default {
 </pre>
     </section>
     <section>
-        <h2 id="23">23. </h2>
-        <p>xxxxxxxxx</p>
+        <h2 id="23">23. Primitive vs Reference Types</h2>
+        <p>References passed through as a prop to another component is literally just passing through a reference to that data, not a new set of data. Therefore if this data is edited, it will indirectly edit the original data. Say for exmaple you had 1 method for deleting an element on a page, if the component being used on that page has an event handler on it, it will trigger the event on both instances of the component.</p>
+        <p>With primitive types you could pass down a props from your root component in to your header and footer file. An example might be a string of 'title' reading 'Website'. In the header file you could assign an event handler calling a function called <code>changeTitle</code> (remember no parenthesis for methods) and it would only update it for the specific component.</p>
         <ul>
-        	<li>xxxxxxxxxxx</li>
+            <li>Reference types are objects, and arrays</li>
+            <li>Primitive types are strings, booleans, and numbers</li>
         </ul>
     </section>
     <section>
