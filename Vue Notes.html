@@ -157,7 +157,7 @@ main {
 	        <li><a href="#19">19. Nesting Components</a></li>
 	        <li><a href="#20">20. Component CSS (scoped)</a></li>
 	        <li><a href="#21">21. Nesting Components Examples</a></li>
-	        <li><a href="#22">22. </a></li>
+	        <li><a href="#22">22. Props</a></li>
 	    </ul>
     </div>
 	<div class="sidebar-list">
@@ -647,7 +647,6 @@ new Vue({
         <img style="width: 800px" src="vue-component-tree.jpg" alt="Vue Component Tree">
         <ul>
         	<li>Components must be registered globally or locally</li>
-        	<li>xxxxxxxxxxx</li>
         </ul>
         <p>Globally registered would look like this:</p>
 <pre class="prettyprint">
@@ -679,17 +678,46 @@ export default {
     </section>
     <section>
         <h2 id="21">21. Nesting Components Examples</h2>
-        <p>xxxxxxxxx</p>
         <ul>
-        	<li>xxxxxxxxxxx</li>
+            <li>New components would ideally be kept in a new folder e.g. 'src/components'</li>
+        	<li>If creating a header call it app-header, not header as this already exists as a HTML element</li>
         </ul>
     </section>
     <section>
-        <h2 id="22">22. </h2>
-        <p>xxxxxxxxx</p>
-        <ul>
-        	<li>xxxxxxxxxxx</li>
-        </ul>
+        <h2 id="22">22. Props</h2>
+        <p>A way to pass data from one component to another (parent to child)</p>
+        <p>If you wanted to display the same set of data on 5 pages, you would declare this data in a component such as your root component and then pass the data down to its children using props</p>
+        <img src="props.jpg" alt="">
+        <p>This is how we would receieve the data with <code>props</code>:</p>
+<pre class="prettyprint">
+export default {
+    props: ['ninjas']
+}
+</pre>
+        <p>This is how we would pass the data down to the child component (inside App.vue):</p>
+<pre class="prettyprint">
+&lt;app-ninjas v-bind:ninjas="ninjas"&gt;&lt;/app-ninjas&gt;
+</pre>
+    <p><code>v-bind</code> makes it dynamic, without this Vue would see this is a string</p>
+<p>Props can then be accessed inside methods, as if they were declared in the same component:</p>
+<pre class="prettyprint">
+methods: {
+    test.function(){
+        this.ninjas
+    }
+}
+</pre>
+<p>Props can also be validated. Becuase the prop in this exmaple is an array, we can check for it by doing the following:</p>
+<pre class="prettyprint">
+export default {
+    props: {
+        ninjas: {
+            type: array,
+            required: true
+        }
+    }
+}
+</pre>
     </section>
     <section>
         <h2 id="23">23. </h2>
