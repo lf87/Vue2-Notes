@@ -88,37 +88,83 @@ body pre.prettyprint {
 
 .sidebar {
     position: fixed;
-    padding-top: 2rem;
     top: 0;
     right: 0;
     width: 280px;
-    height: 100%;
-    background-color: rgba(96, 125, 139, .1);
+    height: 100vh;
+    background-color: #eff2f3;
 }
 .sidebar h1 {
-	padding: 0 30px;
-	position: relative;
-	z-index: 1;
+    padding: 0 30px;
+    position: relative;
+    z-index: 2;
 }
 
 .sidebar-list {
-    padding-right: 30px;
-    padding-left: 30px;
+    padding: 0 30px 100px;
     position: absolute;
-    padding-top: 110px;
-    top: 0;
+    top: 60px;
     right: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 120px);
+    font-size: 13px;
+    line-height: 1.9;
 }
-.sidebar-list:nth-of-type(2) {
-	right: -260px;
-	background-color: #d2dbde;
-	transition: .3s transform ease-in;
+.sidebar::before,
+.sidebar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #eff2f3;
+    z-index: 1;
 }
-.sidebar-list:nth-of-type(2):hover {
-	/* background-color: #eff2f3; */
-	transform: translateX(-260px);
+.sidebar::after {
+    bottom: initial;
+    top: 0;
+}
+[type=checkbox] {
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
+}
+
+.scroll {
+    position: absolute;
+    bottom: -45px;
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.scroll::before {
+    transition: transform .3s ease;
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 13px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 7px 0 7px;
+    border-color: #fff transparent transparent transparent;
+    transform-origin: 50% 4px;
+    will-change: transform;
+}
+
+[type=checkbox]:checked ~ .scroll::before {
+    transform: rotate3d(1, 0, 0, 180deg);
 }
 
 main {
@@ -129,6 +175,12 @@ main {
 .sidebar ul {
     list-style: none;
     padding: 0;
+    will-change: transition;
+    transition: transform .3s ease;
+}
+
+[type=checkbox]:checked ~ ul {
+   transform: translate3d(0, -50%, 0);
 }
 </style>
 
@@ -136,6 +188,8 @@ main {
 <div class="sidebar">
     <h1>Contents:</h1>
     <div class="sidebar-list">
+        <input type="checkbox" id="scroll">
+        <label class="scroll" for="scroll"></label>
 	    <ul>
 	        <li><a href="#2">2. Vue instance</a></li>
 	        <li><a href="#3">3. Data and methods</a></li>
@@ -151,6 +205,7 @@ main {
 	        <li><a href="#13">13. Simple Punchbag Game</a></li>
 	        <li><a href="#14">14. Multiple Vue Instances</a></li>
 	        <li><a href="#15">15. Intro to Components</a></li>
+            <li><a href="#16">16. Refs</a></li>
 	        <li><a href="#16">16. Refs</a></li>
 	        <li><a href="#17">17. The Vue CLI</a></li>
 	        <li><a href="#18">18. Vue Files &amp; The Root Component</a></li>
@@ -158,15 +213,11 @@ main {
 	        <li><a href="#20">20. Component CSS (scoped)</a></li>
 	        <li><a href="#21">21. Nesting Components Examples</a></li>
 	        <li><a href="#22">22. Props</a></li>
-	    </ul>
-    </div>
-	<div class="sidebar-list">
-	    <ul>
 	    	<li><a href="#23">23. Primitive vs Reference Types</a></li>
-	        <li><a href="#24">24. </a></li>
-	        <li><a href="#25">25. </a></li>
-	        <li><a href="#26">26. </a></li>
-	        <li><a href="#27">27. </a></li>
+	        <li><a href="#24">24. Events (child to parent)</a></li>
+	        <li><a href="#25">25. The Event Bus</a></li>
+	        <li><a href="#26">26. Life-cycle Hooks</a></li>
+	        <li><a href="#27">27. Slots</a></li>
 	        <li><a href="#28">28. </a></li>
 	        <li><a href="#29">29. </a></li>
 	        <li><a href="#30">30. </a></li>
@@ -318,7 +369,7 @@ new Vue({
         <h2 id="9">9. Computed Properties</h2>
         <ul>
             <li>Computed values are cached and therefore efficient</li>
-            <li>Used for manipulating properties (such as larage data sets)</li>
+            <li>Used for manipulating properties (such as large data sets)</li>
             <li>To run a computed property remove the parenthesis</li>
         </ul>
         <p>Explanation on the difference between Methods and Computed properties here - <a href="https://stackoverflow.com/questions/44350862/method-vs-computed-in-vue">https://stackoverflow.com/questions/44350862/method-vs-computed-in-vue</a></p>
@@ -557,9 +608,9 @@ new Vue({
         <h2 id="16">16. Refs</h2>
         <ul>
 		    <li>We can use refs to reach into the DOM and access information such as text input value's, inner HTML and more</li>
-		    <li>A <code>ref</code> attribute is added to an element to make it accesible</li>
+		    <li>A <code>ref</code> attribute is added to an element to make it accessible</li>
         </ul>
-        <p>In the example below, when the submit button is hit, it ill run the readRefs function, return the <code>value</code> from the object created by the <code>input</code> ref(erence), and update the <code>output</code>.</p>
+        <p>In the example below, when the submit button is hit, it'll run the readRefs function, return the <code>value</code> from the object created by the <code>input</code> ref(erence), and update the <code>output</code>.</p>
 <pre class="prettyprint">
 &lt;div id="vue-app-one"&gt;
 	&lt;input type="text" ref="input" /&gt;
@@ -673,7 +724,7 @@ export default {
         <h2 id="20">20. Component CSS (scoped)</h2>
         <p>Components can be styled independently of each other, using scoped styles</p>
         <ul>
-        	<li>By adding the word <code>scoped</code> to the style tag, the styles wilkl only apply to the current template</li>
+        	<li>By adding the word <code>scoped</code> to the style tag, the styles will only apply to the current template</li>
         </ul>
     </section>
     <section>
@@ -707,7 +758,7 @@ methods: {
     }
 }
 </pre>
-<p>Props can also be validated. Becuase the prop in this exmaple is an array, we can check for it by doing the following:</p>
+<p>Props can also be validated. Becuase the prop in this example is an array, we can check for it by doing the following:</p>
 <pre class="prettyprint">
 export default {
     props: {
@@ -721,7 +772,7 @@ export default {
     </section>
     <section>
         <h2 id="23">23. Primitive vs Reference Types</h2>
-        <p>References passed through as a prop to another component is literally just passing through a reference to that data, not a new set of data. Therefore if this data is edited, it will indirectly edit the original data. Say for exmaple you had 1 method for deleting an element on a page, if the component being used on that page has an event handler on it, it will trigger the event on both instances of the component.</p>
+        <p>References passed through as a prop to another component is literally just passing through a reference to that data, not a new set of data. Therefore if this data is edited, it will indirectly edit the original data. Say for example you had 1 method for deleting an element on a page, if the component being used on that page has an event handler on it, it will trigger the event on both instances of the component.</p>
         <p>With primitive types you could pass down a props from your root component in to your header and footer file. An example might be a string of 'title' reading 'Website'. In the header file you could assign an event handler calling a function called <code>changeTitle</code> (remember no parenthesis for methods) and it would only update it for the specific component.</p>
         <ul>
             <li>Reference types are objects, and arrays</li>
@@ -729,29 +780,101 @@ export default {
         </ul>
     </section>
     <section>
-        <h2 id="24">24. </h2>
-        <p>xxxxxxxxx</p>
+        <h2 id="24">24. Events (child to parent)</h2>
+        <p>This kind of reactive relation is useful to know due to the fact that reference types only update the current component.</p>
         <ul>
-        	<li>xxxxxxxxxxx</li>
+        	<li>Using <code>this.$emit</code> will emit an event on <code>this</code> component</li>
         </ul>
+        <p>Below is an example of how to emit an event. The first parameter is the event you're interacting with. The 2nd parameter is the data you want to pass with the event:</p>
+<pre class="prettyprint">
+methods: {
+    changeTitle: function() {
+    this.$emit('changeTitle', 'Vue Wizards');
+    }
+}
+</pre>
+        <p>We will then tell our root component to listen for this event using <code>v-on</code>, it can then fire a function of its own, and then we can retreieve the data (2nd paremeter or <code>$emit</code>) by taken through <code>$event</code> as a parameter:</p>
+<pre class="prettyprint">
+&lt;app-header v-bind:title="title" v-on:changeTitle="updateTitle($event)"&gt;
+&lt;/app-header&gt;
+</pre>
+        <p>Next we will create the updatedTitle function, which will be used to retrieve the event we passed along in to our root component:</p>
+<pre class="prettyprint">
+methods: {
+    updatedTitle: function(updatedTitle) {
+    this.title = updatedTitle;
+    }
+}
+</pre>
+
+</pre>
     </section>
     <section>
-        <h2 id="25">25. </h2>
-        <p>xxxxxxxxx</p>
-        <ul>
-        	<li>xxxxxxxxxxx</li>
-        </ul>
+        <h2 id="25">25. The Event Bus</h2>
+        <p>The event bus is a Vue instance, which can emit and listen to events. It allows for direct component to component data transfer</p>
+        <p>In this example, a new event bus is created and exported so it can be used in other components.</p>
+<pre class="prettyprint">
+export const bus = new Vue();
+</pre>
+<p>Importing it in a component can be done like this (notice the exclusion of the file extension):</p>
+<pre class="prettyprint">
+import { bus } from '../main';
+</pre>
+<p>Previously, with the parent to child event, we were emitting the event on the current component. Instead we want to emit it on the event bus, this can be acheieved like so:</p>
+<pre class="prettyprint">
+methods: {
+    changeTitle: function() {
+        this.title = 'Vue Wizards'; // edit title directly
+        bus.$emit('titleChanged', 'Vue Wizards');
+    }
+}
+</pre>
+<p>In another component we could listen for that event. This needs to be done after the event bus is created, which is at the 'created' stage of the life Vue life cycle. A flat arrow callback function is then used to get the data (2nd parameter) to change <code>this.title</code>:</p>
+<pre class="prettyprint">
+created(): {
+    changeTitle: function() {
+        bus.$on('titleChanged', (data) => {
+            this.title = data
+        })
+    }
+}
+</pre>
     </section>
     <section>
-        <h2 id="26">26. </h2>
-        <p>xxxxxxxxx</p>
+        <h2 id="26">26. Life-cycle Hooks</h2>
+        <p>These are the series of initialisation steps each Vue instance goes through when it is created</p>
+        <img style="max-width:500px" src="lifecycle.png" alt="">
         <ul>
-        	<li>xxxxxxxxxxx</li>
+        	<li>el is the property on the vue instance</li>
         </ul>
+        <p>Ref: <a href="https://vuejs.org/v2/guide/instance.html">https://vuejs.org/v2/guide/instance.html</a></p>
     </section>
     <section>
-        <h2 id="27">27. </h2>
-        <p>xxxxxxxxx</p>
+        <h2 id="27">27. Slots</h2>
+        <p>Similarily with props, this will exlpain how to pass something more complex such as a HTML template down to child component using the <code>&lt;slot&gt;</code> tag</p>
+        <p>In our root component (App.vue) we might have something that looks like this:</p>
+<pre class="prettyprint">
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;form-helper&gt;
+            &lt;div slot="form-header"&gt;
+                &lt;h3&gt;This is the title of a form&lt;/h3&gt;
+                &lt;p&gt;This is some info about the form&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/form-helper&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</pre>
+<p>And in formHelper.vue we would access this markup using the <code>&lt;slot&gt;</code> tag:</p>
+<pre class="prettyprint">
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;h1&gt;I am the form helper&lt;/h1&gt;
+        &lt;slot&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</pre>
+<p>Slots parts can be accessed individually by naming them i.e. <code>&lt;h2 slot="heading"&gt;&lt;/h2&gt;</code>, and accessed like so - <code>&lt;slot name="heading"&gt;&lt;/slot&gt;</code></p>
         <ul>
         	<li>xxxxxxxxxxx</li>
         </ul>
