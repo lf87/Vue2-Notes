@@ -205,7 +205,6 @@ main {
 	        <li><a href="#13">13. Simple Punchbag Game</a></li>
 	        <li><a href="#14">14. Multiple Vue Instances</a></li>
 	        <li><a href="#15">15. Intro to Components</a></li>
-            <li><a href="#16">16. Refs</a></li>
 	        <li><a href="#16">16. Refs</a></li>
 	        <li><a href="#17">17. The Vue CLI</a></li>
 	        <li><a href="#18">18. Vue Files &amp; The Root Component</a></li>
@@ -218,9 +217,9 @@ main {
 	        <li><a href="#25">25. The Event Bus</a></li>
 	        <li><a href="#26">26. Life-cycle Hooks</a></li>
 	        <li><a href="#27">27. Slots</a></li>
-	        <li><a href="#28">28. </a></li>
-	        <li><a href="#29">29. </a></li>
-	        <li><a href="#30">30. </a></li>
+	        <li><a href="#28">28. Dynamic Components</a></li>
+	        <li><a href="#29">29. Input Binding</a></li>
+	        <li><a href="#30">30. Checkbox Binding</a></li>
 	        <li><a href="#31">31. </a></li>
 	        <li><a href="#32">32. </a></li>
 	        <li><a href="#33">33. </a></li>
@@ -876,29 +875,86 @@ created(): {
 </pre>
 <p>Slots parts can be accessed individually by naming them i.e. <code>&lt;h2 slot="heading"&gt;&lt;/h2&gt;</code>, and accessed like so - <code>&lt;slot name="heading"&gt;&lt;/slot&gt;</code></p>
         <ul>
-        	<li>xxxxxxxxxxx</li>
+            <li>Data can be added, and slots can be styled in the same component file where the slot is declared</li>
         </ul>
     </section>
     <section>
-        <h2 id="28">28. </h2>
-        <p>xxxxxxxxx</p>
+        <h2 id="28">28. Dynamic Components</h2>
+        <p>Dynamic components allow us to dynamically change which component is output to the browser. This can be acheieved by using the <code>&lt;component&gt;</code> tag, which we can then bind data to to change the state of it.</p>
+        <p>When switching from one component to another, by default, any manipulated data will be destroyed/reset. By wrapping our component tag in a <code>&lt;keep-alive&gt;</code> tag, we can maintain the state of that component.</p>
+        <p>This is a basic example of dynamic components in action:</p>
+<pre class="prettyprint">
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;keep-alive&gt;
+            &lt;component v-bind:is="component-name"&gt;&lt;/component&gt;
+        &lt;/keep-alive&gt;
+        &lt;button v-on:click="component = 'form-one'"&gt;Show form one&lt;/button&gt;
+        &lt;button v-on:click="component = 'form-two'"&gt;Show form two&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    import formOne from './components/formOne.vue';
+    import formTwo from './components/formTwo.vue';
+    export default {
+        components: {
+            'form-one': formOne,
+            'form-two': formTwo
+        },
+        data () {
+            return {
+                component: 'form-one'
+            }
+        },
+        methods: {
+            handleSubmit: function(){
+                alert('thanks for submitting');
+            }
+        }
+}
+&lt;/script&gt;
+</pre>
+    </section>
+    <section>
+        <h2 id="29">29. Input Binding</h2>
         <ul>
-        	<li>xxxxxxxxxxx</li>
+            <li>The v-model directive can be used to bind data to fields</li>
+        	<li>To keep projects tidy and code semantic, it's useful to store certain chunks of data in objects (opposed to the standard array), this would be accessed using <code>v-model="blog.content"</code></li>
+            <li>By appending the lazy attribute to your v-model, the data binding won't initiate until you hit the tab key, which would look like this - <code>lazy.v-model</code></li>
+            <li>Adding <code>&lt;trim&gt;</code> will remove any whitespaces</li>
+
         </ul>
     </section>
     <section>
-        <h2 id="29">29. </h2>
-        <p>xxxxxxxxx</p>
-        <ul>
-        	<li>xxxxxxxxxxx</li>
-        </ul>
-    </section>
-    <section>
-        <h2 id="30">30. </h2>
-        <p>xxxxxxxxx</p>
-        <ul>
-        	<li>xxxxxxxxxxx</li>
-        </ul>
+        <h2 id="30">30. Checkbox Binding</h2>
+        <p>The code example below shows us how to use the v-model directive to bind data to check boxes</p>
+<pre class="prettyprint">
+&lt;input type="checkbox" value="ninjas" v-model="blog.categories" /&gt;
+&lt;label&gt;Wizards&lt;/label&gt;
+&lt;input type="checkbox" value="wizards" v-model="blog.categories" /&gt;
+&lt;label&gt;Mario&lt;/label&gt;
+&lt;input type="checkbox" value="mario" v-model="blog.categories" /&gt;
+&lt;label&gt;Cheese&lt;/label&gt;
+&lt;input type="checkbox" value="cheese" v-model="blog.categories" /&gt;
+&lt;ul&gt;
+    &lt;li v-for="category in blog.categories"&gt;{{ category }}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+    // Imports
+    export default {
+        data () {
+            return {
+                blog: {
+                    categories: []
+                }
+            }
+        },
+        methods: {
+        }
+    }
+&lt;/script&gt;
+</pre>
     </section>
     <section>
         <h2 id="31">31. </h2>
@@ -999,5 +1055,5 @@ created(): {
         </ul>
     </section>
 </main>
-</body>
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=desert"></script> 
+</body>
