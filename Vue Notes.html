@@ -1,188 +1,196 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<style>
-:root {
-    --v-space: 2em;
-    --v-space-headings: 0.5em;
-    --text-color: #131313;
-    --primary-color: #607d8b;
-}
+<!DOCTYPE HTML>
+<html>
 
-* {
-	box-sizing: border-box;
-}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Vue JS 2 Notes</title>
+    <meta name="description" content="Page Description" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <style>
+    :root {
+        --v-space: 2em;
+        --v-space-headings: 0.5em;
+        --text-color: #131313;
+        --primary-color: #607d8b;
+    }
 
-body {
-    padding: 0;
-    color: var(--text-color);
-    font-size: 16px;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 2;
-    max-width: 100%;
-}
+    * {
+    	box-sizing: border-box;
+    }
 
-h1,
-h2,
-h3 {
-    margin-bottom: var(--v-space-headings);
-}
+    body {
+        padding: 0;
+        color: var(--text-color);
+        font-size: 16px;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 2;
+        max-width: 100%;
+    }
 
-h1 {
-    color: var(--primary-color);
-    font-size: 30px;
-    font-weight: bold;
-}
+    h1,
+    h2,
+    h3 {
+        margin-bottom: var(--v-space-headings);
+    }
 
-h2,
-h3 {
-    color: var(--primary-color);
-    font-size: 24px;
-    margin-bottom: 1em;
-}
+    h1 {
+        color: var(--primary-color);
+        font-size: 30px;
+        font-weight: bold;
+    }
 
-h2 {
-    padding-top: calc(var(--v-space)*0.5);
-}
+    h2,
+    h3 {
+        color: var(--primary-color);
+        font-size: 24px;
+        margin-bottom: 1em;
+    }
 
-a {
-    text-decoration: underline;
-    color: var(--primary-color);
-}
+    h2 {
+        padding-top: calc(var(--v-space)*0.5);
+    }
 
-header,
-section {
-    margin-bottom: var(--v-space);
-    padding-bottom: var(--v-space);
-    float: left;
-    width: 100%;
-    position: relative;
-    border-bottom: 1px #ccc solid;
-}
+    a {
+        text-decoration: underline;
+        color: var(--primary-color);
+    }
 
-p {
-    margin-bottom: var(--v-space);
-}
+    header,
+    section {
+        margin-bottom: var(--v-space);
+        padding-bottom: var(--v-space);
+        float: left;
+        width: 100%;
+        position: relative;
+        border-bottom: 1px #ccc solid;
+    }
 
-ul {
-    margin-bottom: var(--v-space);
-    list-style: disc;
-    padding-left: 20px;
-}
+    p {
+        margin-bottom: var(--v-space);
+    }
 
-img {
-    display: block;
-    max-width: 100%;
-    margin-bottom: var(--v-space);
-}
+    ul {
+        margin-bottom: var(--v-space);
+        list-style: disc;
+        padding-left: 20px;
+    }
 
-code {
-    font-family: monospace;
-    font-weight: bold;
-}
+    img {
+        display: block;
+        max-width: 100%;
+        margin-bottom: var(--v-space);
+    }
+
+    code {
+        font-family: monospace;
+        font-weight: bold;
+    }
 
 
-body pre.prettyprint {
-    margin: 0 0 var(--v-space);
-    padding: var(--v-space);
-}
+    body pre.prettyprint {
+        margin: 0 0 var(--v-space);
+        padding: var(--v-space);
+    }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 280px;
-    height: 100vh;
-    background-color: #eff2f3;
-}
-.sidebar h1 {
-    padding: 0 30px;
-    position: relative;
-    z-index: 2;
-}
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background-color: #eff2f3;
+    }
+    .sidebar h1 {
+        padding: 0 30px;
+        position: relative;
+        z-index: 2;
+    }
 
-.sidebar-list {
-    padding: 0 30px 100px;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 100%;
-    height: calc(100vh - 120px);
-    font-size: 13px;
-    line-height: 1.9;
-}
-.sidebar::before,
-.sidebar::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #eff2f3;
-    z-index: 1;
-}
-.sidebar::after {
-    bottom: initial;
-    top: 0;
-}
-[type=checkbox] {
-   position: absolute;
-   top: -9999px;
-   left: -9999px;
-}
+    .sidebar-list {
+        padding: 0 30px 100px;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        height: calc(100vh - 120px);
+        font-size: 13px;
+        line-height: 1.9;
+    }
+    .sidebar::before,
+    .sidebar::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background-color: #eff2f3;
+        z-index: 1;
+    }
+    .sidebar::after {
+        bottom: initial;
+        top: 0;
+    }
+    [type=checkbox] {
+       position: absolute;
+       top: -9999px;
+       left: -9999px;
+    }
 
-.scroll {
-    position: absolute;
-    bottom: -45px;
-    z-index: 2;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
-    cursor: pointer;
-}
+    .scroll {
+        position: absolute;
+        bottom: -45px;
+        z-index: 2;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.3);
+        cursor: pointer;
+    }
 
-.scroll::before {
-    transition: transform .3s ease;
-    content: '';
-    position: absolute;
-    top: 16px;
-    left: 13px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px 7px 0 7px;
-    border-color: #fff transparent transparent transparent;
-    transform-origin: 50% 4px;
-    will-change: transform;
-}
+    .scroll::before {
+        transition: transform .3s ease;
+        content: '';
+        position: absolute;
+        top: 16px;
+        left: 13px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 7px 0 7px;
+        border-color: #fff transparent transparent transparent;
+        transform-origin: 50% 4px;
+        will-change: transform;
+    }
 
-[type=checkbox]:checked ~ .scroll::before {
-    transform: rotate3d(1, 0, 0, 180deg);
-}
+    [type=checkbox]:checked ~ .scroll::before {
+        transform: rotate3d(1, 0, 0, 180deg);
+    }
 
-main {
-    padding-right: 370px;
-    padding-left: 30px;
-}
+    main {
+        padding-right: 370px;
+        padding-left: 30px;
+    }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    will-change: transition;
-    transition: transform .3s ease;
-}
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        will-change: transition;
+        transition: transform .3s ease;
+    }
 
-[type=checkbox]:checked ~ ul {
-   transform: translate3d(0, -50%, 0);
-}
-</style>
+    [type=checkbox]:checked ~ ul {
+       transform: translate3d(0, -50%, 0);
+    }
+    </style>
+</head>
 
 <body>
 <div class="sidebar">
@@ -220,8 +228,8 @@ main {
 	        <li><a href="#28">28. Dynamic Components</a></li>
 	        <li><a href="#29">29. Input Binding</a></li>
 	        <li><a href="#30">30. Checkbox Binding</a></li>
-	        <li><a href="#31">31. </a></li>
-	        <li><a href="#32">32. </a></li>
+	        <li><a href="#31">31. Select Box Binding</a></li>
+	        <li><a href="#32">32. HTTP Requests</a></li>
 	        <li><a href="#33">33. </a></li>
 	        <li><a href="#33">33. </a></li>
 	        <li><a href="#34">34. </a></li>
@@ -497,7 +505,7 @@ new Vue({
     methods: {
         punch: function(){
             this.health -= 10;
-            if ( this.health <= 0 ){
+            if ( this.health &lt;= 0 ){
                 this.ended = true;
             }
         },
@@ -703,7 +711,7 @@ new Vue({
 import Ninjas from './Ninjas.vue'
 Vue.component('ninjas', Ninjas);
 </pre>
-        <p?>We can then register it in our Vue file by creating a HTML tag matching the component name. So in this case the element would be called <code>&lt;ninjas&gt;&lt;/ninjas&gt;</code>.</p>
+        <p>We can then register it in our Vue file by creating a HTML tag matching the component name. So in this case the element would be called <code>&lt;ninjas&gt;&lt;/ninjas&gt;</code>.</p>
         <p>To nest a component locally, you would import the same way as previously, but also register a component. It would look like this:</p>
 <pre class="prettyprint">
 import Ninjas from './Ninjas.vue';
@@ -804,8 +812,6 @@ methods: {
     this.title = updatedTitle;
     }
 }
-</pre>
-
 </pre>
     </section>
     <section>
@@ -929,7 +935,7 @@ created(): {
     <section>
         <h2 id="30">30. Checkbox Binding</h2>
         <p>The code example below shows us how to use the v-model directive to bind data to check boxes</p>
-<pre class="prettyprint">
+<pre class="prettyPrint">
 &lt;input type="checkbox" value="ninjas" v-model="blog.categories" /&gt;
 &lt;label&gt;Wizards&lt;/label&gt;
 &lt;input type="checkbox" value="wizards" v-model="blog.categories" /&gt;
@@ -957,15 +963,47 @@ created(): {
 </pre>
     </section>
     <section>
-        <h2 id="31">31. </h2>
-        <p>xxxxxxxxx</p>
-        <ul>
-        	<li>xxxxxxxxxxx</li>
-        </ul>
+        <h2 id="31">31. Select Box Binding</h2>
+        <p>The <code>v-model</code> directive will get the value of whichever option is selected. In the example below an array is looped through using the <code>v-for</code> directive</p>
+<pre class="prettyPrint">
+&lt;select v-model="blog.author"&gt;
+    &lt;option v-for="author in authors"&gt;{{ author }}&lt;/option&gt;
+&lt;/select&gt;
+&lt;p&gt;Author: {{ blog.author }}&lt;/p&gt;
+export default {
+    data () {
+        return {
+            blog: {
+                author: ''
+            },
+            authors: ['The Net Ninja', 'The Angular Avenger', 'The Vue Vindicator']
+        }
+    }
+}
+</pre>
     </section>
     <section>
-        <h2 id="32">32. </h2>
-        <p>xxxxxxxxx</p>
+        <h2 id="32">32. HTTP Requests</h2>
+        <p>HTTP Requests can be made using the vueResource plugin</p>
+        <p>First the plugin needs inporting and initialising from your main.js file</p>
+<pre class="prettyPrint">
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+import App from './App.vue'
+
+// Use vue-resource package
+Vue.use(VueResource);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+</pre>
+<p>Then for example we could create a button, that on click would call a function for making a HTTP post request. We can prevent the default event of the button using the <code>prevent</code> modifier</p>
+<pre class="prettyPrint">
+&lt;button v-on:click.prevent="post"&gt;Add Blog&lt;/button&gt;
+</pre>
+<p>In the function we say <code>this</code> to refer to the component, and then what type of request your're making, followed by where you're posting to.<br> Next we'd define the properties in the object. Once all that is complete we can add on a <code>then</code> method - this returns what's known as a promise, and won't run until the post has sucessfully completed, it will run whatever function is passed through to the <code>then</code> method </p>
         <ul>
         	<li>xxxxxxxxxxx</li>
         </ul>
